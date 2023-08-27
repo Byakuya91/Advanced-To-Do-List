@@ -8,11 +8,18 @@ import { TaskList } from "./Components/TaskList";
 // TODOs;
 // * 1) Created Bollerplate and cleared it(DONE)
 // * 2)  Worked on CSS sheet(DONE)
+
 //  ** COMPONENTS FOR PROJECT
-// * 1)  add TODOs(ONGOING)
-// * 2)  Create a Form to EDIT TODOs
-// * 3)  Display TO-DOs
-// * 4)   TO-DO element
+// * A)  add TODOs(DONE)
+// * B)  Create a Form to EDIT TODOs(DONE)
+// * C)  Display TO-DOs(DONE)
+// * D)   TO-DO element(DONE)
+
+// ** CRUD functionality
+// ** 1) ADDING a task(DONE)
+// ** 2) DELETING a task(DONE)
+// ** 3) updating the checked property of the object(ONGOING)
+// ** 3) EDITING a task and updating it.
 
 function App() {
   //* Shared state: Tasks
@@ -23,6 +30,18 @@ function App() {
     // grabbing the task value and add it to tasks
     setTasks((prevState) => [...prevState, task]);
   };
+  //  Function a way to delete tasks
+  const deleteTask = (id) => {
+    setTasks((prevState) => prevState.filter((task) => task.id !== id));
+  };
+
+  // Function to update the check box object property
+  const toggleTask = (id) => {
+    // setting checked between true and false.
+    setTasks((prevState) =>
+      prevState.map((t) => (t.id === id ? { ...t, checked: !t.checked } : t))
+    );
+  };
 
   return (
     <div className="container">
@@ -30,7 +49,13 @@ function App() {
         <h1>My Tasks</h1>
       </header>
       <CustomForm addTask={addTask} />
-      {tasks && <TaskList tasks={tasks} />}
+      {tasks && (
+        <TaskList
+          tasks={tasks}
+          deleteTask={deleteTask}
+          toggleTask={toggleTask}
+        />
+      )}
     </div>
   );
 }

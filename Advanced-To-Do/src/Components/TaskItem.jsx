@@ -11,14 +11,16 @@ import {
   TrashIcon,
 } from "@heroicons/react/24/outline";
 
-export const TaskItem = ({ task }) => {
+export const TaskItem = ({ task, deleteTask, toggleTask }) => {
   //  State variable to update checked icon
   const [isChecked, setIsChecked] = useState(task.checked);
 
   // Function to handle the checkbox
   const handleCheckedBoxChange = (e) => {
-    // ? Toggles the checkbox
+    // ? sets the checkbox on the lis
     setIsChecked(!isChecked);
+    // ? Updating the checked property for the task object
+    toggleTask(task.id);
   };
 
   return (
@@ -53,7 +55,7 @@ export const TaskItem = ({ task }) => {
         <button
           className={`btn ${styles.delete}`}
           aria-label={`Delete ${task.name} Task`}
-          //  onClick={}
+          onClick={() => deleteTask(task.id)}
         >
           <TrashIcon width={24} height={24} />
         </button>
