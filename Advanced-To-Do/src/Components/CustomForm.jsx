@@ -4,15 +4,22 @@ import { PlusIcon } from "@heroicons/react/24/solid";
 // * React Imports
 import { useState } from "react";
 
-// function to add a To-Do
-const handleFormSubmit = (e) => {
-  e.preventDefault();
-  console.log(e);
-};
-
-const CustomForm = () => {
+const CustomForm = ({ addTask }) => {
   // Task state
   const [task, setTask] = useState("");
+  // function to submit a Task
+  const handleFormSubmit = (e) => {
+    //? prevents the page from reloading
+    // STEP ONE: Reset the task to an empty string
+    //   Step TWO: Adding the task
+    e.preventDefault();
+    addTask({
+      name: task,
+      checked: false,
+      id: Date.now(),
+    });
+    setTask("");
+  };
 
   return (
     <form className="todo" onSubmit={handleFormSubmit}>

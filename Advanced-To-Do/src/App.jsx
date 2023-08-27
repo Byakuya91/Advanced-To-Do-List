@@ -16,12 +16,17 @@ import CustomForm from "./Components/CustomForm";
 function App() {
   const [count, setCount] = useState(0);
 
+  // Function to add a Task
+  const addTask = (task) => {
+    console.log(task);
+  };
+
   return (
     <div className="container">
       <header>
         <h1>My Tasks</h1>
       </header>
-      <CustomForm />
+      <CustomForm addTask={addTask} />
     </div>
   );
 }
