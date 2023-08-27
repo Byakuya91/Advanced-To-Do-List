@@ -18,8 +18,8 @@ import { TaskList } from "./Components/TaskList";
 // ** CRUD functionality
 // ** 1) ADDING a task(DONE)
 // ** 2) DELETING a task(DONE)
-// ** 3) updating the checked property of the object(ONGOING)
-// ** 3) EDITING a task and updating it.
+// ** 3) updating the checked property of the object(DONE)
+// ** 3) EDITING a task and updating it(ONGOING)
 
 function App() {
   //* Shared state: Tasks
