@@ -3,6 +3,7 @@ import { useState } from "react";
 
 // ! Custom Component imports
 import CustomForm from "./Components/CustomForm";
+import { TaskList } from "./Components/TaskList";
 
 // TODOs;
 // * 1) Created Bollerplate and cleared it(DONE)
@@ -14,11 +15,13 @@ import CustomForm from "./Components/CustomForm";
 // * 4)   TO-DO element
 
 function App() {
-  const [count, setCount] = useState(0);
+  //* Shared state: Tasks
+  const [tasks, setTasks] = useState([]);
 
   // Function to add a Task
   const addTask = (task) => {
-    console.log(task);
+    // grabbing the task value and add it to tasks
+    setTasks((prevState) => [...prevState, task]);
   };
 
   return (
@@ -27,6 +30,7 @@ function App() {
         <h1>My Tasks</h1>
       </header>
       <CustomForm addTask={addTask} />
+      {tasks && <TaskList tasks={tasks} />}
     </div>
   );
 }
