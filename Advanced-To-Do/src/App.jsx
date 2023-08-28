@@ -38,6 +38,9 @@ function App() {
 
   const [isEditing, setIsEditing] = useState(false);
 
+  //  ! Other crucial pieces of state
+  const [previousFocusElement, setPreviousFocusElement] = useState(null);
+
   // Function to add a Task
   const addTask = (task) => {
     // grabbing the task value and add it to tasks
@@ -58,11 +61,19 @@ function App() {
 
   // Function to update a task
   const updateTask = (task) => {
-    // setting checked between true and false.
+    // updates the task with a new name
     setTasks((prevState) =>
       prevState.map((t) => (t.id === task.id ? { ...t, name: task.name } : t))
     );
-    // TODO: close the edit mode
+
+    closeEditMode();
+  };
+
+  // Function to close edit mode
+  const closeEditMode = () => {
+    // closing the editing window
+    setIsEditing(false);
+    previousFocusElement.focus();
   };
 
   //   Function to enter edit mode to update the task
@@ -70,7 +81,7 @@ function App() {
     // setting the edited task
     setEditedTask(task);
     setIsEditing(true);
-    // TODO: set focus back to original.
+    setPreviousFocusElement(document.activeElement);
   };
 
   return (
@@ -79,7 +90,11 @@ function App() {
         <h1>My Tasks</h1>
       </header>
       {isEditing && (
-        <EditForm editedTask={editedTask} updateTask={updateTask} />
+        <EditForm
+          editedTask={editedTask}
+          updateTask={updateTask}
+          closeEditMode={closeEditMode}
+        />
       )}
       <CustomForm addTask={addTask} />
       {tasks && (

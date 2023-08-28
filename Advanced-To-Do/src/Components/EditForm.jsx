@@ -2,18 +2,33 @@
 import { CheckIcon } from "@heroicons/react/24/outline";
 
 // * React Imports
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const EditForm = ({ editedTask, updateTask }) => {
+const EditForm = ({ editedTask, updateTask, closeEditMode }) => {
   // Task state
   const [updatedTaskName, setUpdatedTaskName] = useState(editedTask.name);
+
+  // ? Escaping the modal
+
+  useEffect(() => {
+    const closeModalIfEscaped = (e) => {
+      e.key === "Escape" && closeEditMode();
+    };
+
+    window.addEventListener("keydown", closeModalIfEscaped);
+
+    return () => {
+      window.removeEventListener("keydown", closeModalIfEscaped);
+    };
+  }, [closeEditMode]);
+
   // function to submit a Task
   const handleFormSubmit = (e) => {
     //? prevents the page from reloading
     e.preventDefault();
 
     // updating the task
-    // updateTask();
+    updateTask({ ...editedTask, name: updatedTaskName });
   };
 
   return (
