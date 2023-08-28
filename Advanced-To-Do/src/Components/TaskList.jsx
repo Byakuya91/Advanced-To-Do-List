@@ -5,7 +5,7 @@ import styles from "./TaskList.module.css";
 // import styles from "./TaskList.module.css";
 import { TaskItem } from "./TaskItem";
 
-export const TaskList = ({ tasks, deleteTask, toggleTask }) => {
+export const TaskList = ({ tasks, deleteTask, toggleTask, enterEditMode }) => {
   return (
     <ul className={styles.tasks}>
       {/* DISPLAYING THE TASKS */}
@@ -17,6 +17,7 @@ export const TaskList = ({ tasks, deleteTask, toggleTask }) => {
             task={task}
             deleteTask={deleteTask}
             toggleTask={toggleTask}
+            enterEditMode={enterEditMode}
           />
         ))}
     </ul>
