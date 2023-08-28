@@ -8,6 +8,7 @@ import useLocalStorage from "./CustomHooks/useLocalStorage";
 import CustomForm from "./Components/CustomForm";
 import EditForm from "./Components/EditForm";
 import { TaskList } from "./Components/TaskList";
+import ThemeSwitcher from "./Components/ThemeSwitcher";
 
 // TODOs;
 // * 1) Created Bollerplate and cleared it(DONE)
@@ -19,12 +20,17 @@ import { TaskList } from "./Components/TaskList";
 // * C)  Display TO-DOs(DONE)
 // * D)   TO-DO element(DONE)
 
-// ** CRUD functionality
+// ** CRUD functionality(FINISHED)
 // ** 1) ADDING a task(DONE)
 // ** 2) DELETING a task(DONE)
 // ** 3) updating the checked property of the object(DONE)
-// ** 4) EDITING a task and updating it(ONGOING)
+// ** 4) EDITING a task and updating it(DONE)
 // ** 5) STORING the tasks in local storage with a custom hook(DONE)
+
+// ** THEME SWITCHER
+//  ** 1) WORK ON CSS SHEET for Theme switcher(DONE)
+//  ** 2) Work on creating ThemeProvider component
+//  ** 3) Code out logic for toggling light/dark mode and theme slider.
 
 function App() {
   //* Shared state: Tasks
@@ -105,6 +111,7 @@ function App() {
           enterEditMode={enterEditMode}
         />
       )}
+      <ThemeSwitcher />
     </div>
   );
 }

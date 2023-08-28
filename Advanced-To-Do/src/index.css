@@ -19,6 +19,7 @@ label {
 }
 
 /* * THEME STYLES AND VARIABLES  */
+/*  * NOTE: root is the same as HTML */
 :root {
   --_hue: 245;
   --_size: 1.8rem;
@@ -43,6 +44,8 @@ label {
 }
 
 @media (prefers-color-scheme: dark) {
+
+  /* * GLOBAL CSS VARIABLES */
   :root {
     --bg: var(--bg--dark);
     --txt: var(--txt--dark);
@@ -54,6 +57,8 @@ label {
 }
 
 @media (prefers-color-scheme: light) {
+
+  /* * GLOBAL CSS VARIABLES */
   :root {
     --bg: var(--bg--light);
     --txt: var(--txt--light);
@@ -204,7 +209,7 @@ hr {
     background-color var(--_tspeed_fast) var(--_ttype_squish);
 }
 
-/* *  */
+/* * INPUT UTILITY STYLES */
 
 .input {
   border: none;
