@@ -1,5 +1,8 @@
 //? React Imports
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+//? Custom hooks
+import useLocalStorage from "../CustomHooks/useLocalStorage";
 
 // ? Style imports
 import styles from "./ThemeSwitcher.module.css";
@@ -18,13 +21,35 @@ import {
 
 const ThemeSwitcher = () => {
   //  State variables
+  const [hue, setHue] = useLocalStorage("react-todo.color", "240");
+
+  // ! if the user has dark preferences setup beforehand.
+  const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const [theme, setTheme] = useLocalStorage(
+    "react-todo.theme",
+    defaultDark ? "dark" : "light"
+  );
+
   const [isColorPicking, setIsColorPicking] = useState(false);
-  const [theme, setTheme] = useState("light");
+
+  //   ? modifying the toggle between light and dark
+  useEffect(() => {
+    document.documentElement.setAttribute("color-scheme", theme);
+  }, [theme]);
+
+  //   ? modifying the slider
+  useEffect(() => {
+    document.documentElement.style.setProperty("--_hue", hue);
+  }, [hue]);
 
   return (
     <aside
       className={styles.wrapper}
-      //  style={}
+      style={{
+        backgroundColor: isColorPicking
+          ? "hsl(var(--muted)/.6)"
+          : "transparent",
+      }}
     >
       {isColorPicking ? (
         <>
@@ -35,7 +60,15 @@ const ThemeSwitcher = () => {
           >
             <XMarkIcon />
           </button>
-          <input type="range" />
+          <input
+            className={styles.picker}
+            type="range"
+            min="0"
+            max="360"
+            aria-label="Change color theme slider."
+            value={hue}
+            onInput={(e) => setHue(e.target.value)}
+          />
         </>
       ) : (
         <div className={styles.btns}>

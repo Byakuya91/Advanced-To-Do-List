@@ -29,8 +29,8 @@ import ThemeSwitcher from "./Components/ThemeSwitcher";
 
 // ** THEME SWITCHER
 //  ** 1) WORK ON CSS SHEET for Theme switcher(DONE)
-//  ** 2) Work on creating ThemeProvider component
-//  ** 3) Code out logic for toggling light/dark mode and theme slider.
+//  ** 2) Work on creating ThemeProvider component(DONE)
+//  ** 3) Code out logic for toggling light/dark mode and theme slider(DONE)
 
 function App() {
   //* Shared state: Tasks

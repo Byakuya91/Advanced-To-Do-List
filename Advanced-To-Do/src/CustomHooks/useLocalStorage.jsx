@@ -4,7 +4,7 @@ const useLocalStorage = (key, initialValue) => {
   //   Declaring state variables
   const [value, setValue] = useState(() => {
     try {
-      // grabbing value of localStorage
+      // checks the value passed in
       const localValue = window.localStorage.getItem(key);
       // checking if the local value exists
       // ? Whatever is sent to local storage is sent as a string. Localstorage uses JSON.
@@ -15,7 +15,7 @@ const useLocalStorage = (key, initialValue) => {
     }
   });
 
-  //  saving the local storage
+  //  saving change to local storage
   useEffect(() => {
     //    setting the item
     window.localStorage.setItem(key, JSON.stringify(value));
