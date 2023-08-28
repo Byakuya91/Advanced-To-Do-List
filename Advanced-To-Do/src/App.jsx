@@ -1,7 +1,10 @@
-// ! React imports
+// ? React imports
 import { useState } from "react";
 
-// ! Custom Component imports
+// ? Custom hooks imports
+import useLocalStorage from "./CustomHooks/useLocalStorage";
+
+// ?  Component imports
 import CustomForm from "./Components/CustomForm";
 import { TaskList } from "./Components/TaskList";
 
@@ -19,11 +22,15 @@ import { TaskList } from "./Components/TaskList";
 // ** 1) ADDING a task(DONE)
 // ** 2) DELETING a task(DONE)
 // ** 3) updating the checked property of the object(DONE)
-// ** 3) EDITING a task and updating it(ONGOING)
+// ** 4) EDITING a task and updating it.
+// ** 5) STORING the tasks in local storage with a custom hook.
 
 function App() {
   //* Shared state: Tasks
-  const [tasks, setTasks] = useState([]);
+  // ! useLocalStorage Hook takes in two params:
+  // ! 1) name of the state
+  // ! 2) the initial state
+  const [tasks, setTasks] = useLocalStorage("react-todo.tasks", []);
 
   // Function to add a Task
   const addTask = (task) => {
