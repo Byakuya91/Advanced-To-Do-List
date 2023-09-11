@@ -32,6 +32,10 @@ import ThemeSwitcher from "./Components/ThemeSwitcher";
 //  ** 2) Work on creating ThemeProvider component(DONE)
 //  ** 3) Code out logic for toggling light/dark mode and theme slider(DONE)
 
+// ** REFACTORING CODE
+//  ** 1) Research useContext and refresh yourself how it works.
+//  ** 2) Implement it into the project.
+
 function App() {
   //* Shared state: Tasks
   // ! useLocalStorage Hook takes in two params:

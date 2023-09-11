@@ -1,5 +1,6 @@
 // * Library Imports
 import { PlusIcon } from "@heroicons/react/24/solid";
+import { v4 as uuidv4 } from "uuid";
 
 // * React Imports
 import { useState } from "react";
@@ -16,7 +17,7 @@ const CustomForm = ({ addTask }) => {
     addTask({
       name: task,
       checked: false,
-      id: Date.now(),
+      id: uuidv4(),
     });
     setTask("");
   };
