@@ -3,6 +3,7 @@ import { CheckIcon } from "@heroicons/react/24/outline";
 
 // * React Imports
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const EditForm = ({ editedTask, updateTask, closeEditMode }) => {
   // Task state
@@ -28,7 +29,17 @@ const EditForm = ({ editedTask, updateTask, closeEditMode }) => {
     e.preventDefault();
 
     // updating the task
-    updateTask({ ...editedTask, name: updatedTaskName });
+    // ? check if the task name has been updated
+
+    if (updatedTaskName !== editedTask.name) {
+      updateTask({ ...editedTask, name: updatedTaskName });
+      toast.info("Task updated!");
+    } else {
+      toast.info("No changes made!");
+    }
+
+    // Close edit mode, regardless of changes.
+    closeEditMode();
   };
 
   return (

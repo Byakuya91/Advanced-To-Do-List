@@ -10,6 +10,10 @@ import EditForm from "./Components/EditForm";
 import { TaskList } from "./Components/TaskList";
 import ThemeSwitcher from "./Components/ThemeSwitcher";
 
+// ? Third party react imports
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // Import the CSS for react-toastify
+
 // TODOs;
 // * 1) Created Bollerplate and cleared it(DONE)
 // * 2)  Worked on CSS sheet(DONE)
@@ -55,10 +59,12 @@ function App() {
   const addTask = (task) => {
     // grabbing the task value and add it to tasks
     setTasks((prevState) => [...prevState, task]);
+    toast.success("Task added successfully!");
   };
   //  Function a way to delete tasks
   const deleteTask = (id) => {
     setTasks((prevState) => prevState.filter((task) => task.id !== id));
+    toast.error("Task deleted!");
   };
 
   // Function to update the check box object property
@@ -77,6 +83,7 @@ function App() {
     );
 
     closeEditMode();
+    // toast.info("Task updated!");
   };
 
   // Function to close edit mode
@@ -97,7 +104,7 @@ function App() {
   return (
     <div className="container">
       <header>
-        <h1>My Tasks</h1>
+        <h1>My Tasks for the week</h1>
       </header>
       {isEditing && (
         <EditForm
@@ -116,6 +123,18 @@ function App() {
         />
       )}
       <ThemeSwitcher />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+        theme="dark"
+      />
     </div>
   );
 }
