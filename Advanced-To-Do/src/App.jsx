@@ -13,6 +13,8 @@ import ThemeSwitcher from "./Components/ThemeSwitcher";
 // ? Third party react imports
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; // Import the CSS for react-toastify
+import SearchTasks from "./Components/SearchTasks";
+import SelectTask from "./Components/SelectTask";
 
 // TODOs;
 // * 1) Created Bollerplate and cleared it(DONE)
@@ -47,16 +49,19 @@ function App() {
   // ! 2) the initial state
   const [tasks, setTasks] = useLocalStorage("react-todo.tasks", []);
 
-  // ! EDITING TASK state variables
+  // ? EDITING TASK state variables
   const [editedTask, setEditedTask] = useState(null);
 
   const [isEditing, setIsEditing] = useState(false);
 
-  //  ! Other crucial pieces of state
+  //  ? Other crucial pieces of state
   const [previousFocusElement, setPreviousFocusElement] = useState(null);
 
   // ? filtered tasks
   const [filter, setFilter] = useState("all");
+
+  // ? Search query for searchTask bar
+  const [searchQuery, setSearchQuery] = useState("");
 
   // ! Handler/ CRUD functions
 
@@ -111,26 +116,38 @@ function App() {
   // ? state to handled filtered tasks
   const filteredTasks = tasks.filter((task) => {
     // ? conditional logic for the drop down
-    return filter === "completed"
-      ? task.checked
-      : filter === "incomplete"
-      ? !task.checked
-      : true;
+    return (
+      (filter === "completed"
+        ? task.checked
+        : filter === "incomplete"
+        ? !task.checked
+        : true) &&
+      //? Search query matches task name (case-insensitive)
+      task.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
   });
 
   return (
     <div className="container">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+        theme="dark"
+      />
       <header>
         <h1>My Tasks for the week</h1>
-        <select
-          className="select-custom"
-          onChange={(e) => setFilter(e.target.value)}
-          value={filter}
-        >
-          <option value="all">All Tasks</option>
-          <option value="completed">Completed </option>
-          <option value="incomplete">Incomplete</option>
-        </select>
+        <SearchTasks
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+        />
+        <SelectTask filter={filter} setFilter={setFilter} />
       </header>
       {isEditing && (
         <EditForm
@@ -149,18 +166,6 @@ function App() {
         />
       )}
       <ThemeSwitcher />
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover={false}
-        theme="dark"
-      />
     </div>
   );
 }

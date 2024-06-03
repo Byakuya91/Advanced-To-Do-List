@@ -1,0 +1,50 @@
+/* SearchTasks component styles */
+/* SearchBar.module.css styles */
+
+/* Common styles */
+.input-wrapper {
+  position: relative;
+  display: grid;
+  gap: 0.2em;
+  margin-block-start: 0.6em;
+  margin-bottom: 15px;
+}
+
+.label {
+  text-transform: uppercase;
+  font-size: 0.9em;
+  pointer-events: none;
+  letter-spacing: 0.05em;
+  margin-inline: 0.45em;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.1em 0.35em;
+}
+
+.input {
+  /* Inherit common styles or variables */
+  /* For example: */
+  border: none;
+  border-radius: var(--_radius);
+  padding: 0.35em 0.55em;
+  width: 100%;
+  background-color: hsl(var(--muted));
+  caret-color: hsl(var(--accent));
+  box-shadow: 0 0 0 -0.1em hsl(var(--bg)), 0 0 0 -0.2em hsl(var(--accent) / 0.8);
+  transition: box-shadow var(--_tspeed_fast) var(--_ttype_squish);
+}
+
+/* Input focus styles */
+.input:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2em hsl(var(--bg)), 0 0 0 0.4em hsl(var(--accent) / 0.8);
+}
+
+/* Label focus styles */
+.input:focus ~ .label,
+.input:not(:placeholder-shown) ~ .label {
+  transform: translate3d(0, -2.75em, 0);
+  background-color: hsl(var(--bg));
+  color: hsl(var(--accent) / 0.8);
+}
