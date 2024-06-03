@@ -55,6 +55,13 @@ function App() {
   //  ! Other crucial pieces of state
   const [previousFocusElement, setPreviousFocusElement] = useState(null);
 
+  // ? filtered tasks
+  const [filter, setFilter] = useState("all");
+
+  // ! Handler/ CRUD functions
+
+  console.log("Tasks before filter", tasks);
+
   // Function to add a Task
   const addTask = (task) => {
     // grabbing the task value and add it to tasks
@@ -101,10 +108,29 @@ function App() {
     setPreviousFocusElement(document.activeElement);
   };
 
+  // ? state to handled filtered tasks
+  const filteredTasks = tasks.filter((task) => {
+    // ? conditional logic for the drop down
+    return filter === "completed"
+      ? task.checked
+      : filter === "incomplete"
+      ? !task.checked
+      : true;
+  });
+
   return (
     <div className="container">
       <header>
         <h1>My Tasks for the week</h1>
+        <select
+          className="select-custom"
+          onChange={(e) => setFilter(e.target.value)}
+          value={filter}
+        >
+          <option value="all">All Tasks</option>
+          <option value="completed">Completed </option>
+          <option value="incomplete">Incomplete</option>
+        </select>
       </header>
       {isEditing && (
         <EditForm
@@ -116,7 +142,7 @@ function App() {
       <CustomForm addTask={addTask} />
       {tasks && (
         <TaskList
-          tasks={tasks}
+          tasks={filteredTasks}
           deleteTask={deleteTask}
           toggleTask={toggleTask}
           enterEditMode={enterEditMode}

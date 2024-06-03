@@ -44,7 +44,6 @@ label {
 }
 
 @media (prefers-color-scheme: dark) {
-
   /* * GLOBAL CSS VARIABLES */
   :root {
     --bg: var(--bg--dark);
@@ -57,7 +56,6 @@ label {
 }
 
 @media (prefers-color-scheme: light) {
-
   /* * GLOBAL CSS VARIABLES */
   :root {
     --bg: var(--bg--light);
@@ -228,8 +226,8 @@ hr {
 }
 
 /* * moves Input label up */
-.input:focus~.label,
-.input:not(:placeholder-shown)~.label {
+.input:focus ~ .label,
+.input:not(:placeholder-shown) ~ .label {
   transform: translate3d(0, -3em, 0);
   background-color: hsl(var(--bg));
   color: hsl(var(--accent) / 0.8);
@@ -257,4 +255,17 @@ hr {
   border-radius: var(--_radius);
   border: 0.1em solid hsl(var(--accent) / 0.3);
   box-shadow: 0 -1em 3em hsl(var(--muted)), 0 1em 3em hsl(var(--accent) / 0.2);
+}
+
+/* Add styles for the select element */
+.select-custom {
+  appearance: none;
+  background-color: hsl(var(--muted));
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: var(--_radius);
+  font-size: var(--_size);
+  color: hsl(var(--txt));
+  cursor: pointer;
+  transition: background-color var(--_tspeed_fast) var(--_ttype_squish);
 }
