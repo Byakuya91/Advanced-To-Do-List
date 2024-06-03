@@ -258,6 +258,36 @@ hr {
   box-shadow: 0 -1em 3em hsl(var(--muted)), 0 1em 3em hsl(var(--accent) / 0.2);
 }
 
+/* Styles for the search bar and select component */
+/* Adjust margin for the wrapper div to ensure consistent spacing */
+.wrapperSearchBarContainer {
+  margin-bottom: -13px;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  justify-content: space-between; /* Distribute items evenly along the main axis */
+  height: auto; /* Adjust height as needed */
+  margin-top: 8px;
+}
+
+/* Adjust margin between the SearchTasks and SelectTask */
+.SearchTasksComponent,
+.SelectTasksComponent {
+  margin-bottom: 15px; /* Add margin between the two components */
+}
+
+.select-custom {
+  appearance: none;
+  background-color: hsl(var(--muted));
+  border: none;
+  padding: 0.35em 0.55em;
+  width: 100%;
+  border-radius: var(--_radius);
+  font-size: var(--_size);
+  color: hsl(var(--txt));
+  cursor: pointer;
+  transition: background-color var(--_tspeed_fast) var(--_ttype_squish);
+}
+
 /* Add styles for the select element */
 .select-custom {
   appearance: none;

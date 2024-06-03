@@ -143,11 +143,19 @@ function App() {
       />
       <header>
         <h1>My Tasks for the week</h1>
-        <SearchTasks
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-        />
-        <SelectTask filter={filter} setFilter={setFilter} />
+        <div className="wrapperSearchBarContainer">
+          <SearchTasks
+            className="SearchTasksComponent"
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />
+          <SelectTask
+            className="SelectTasksComponent"
+            filter={filter}
+            setFilter={setFilter}
+          />
+          {/* <CustomForm className="CustomFormComponent" addTask={addTask} /> */}
+        </div>
       </header>
       {isEditing && (
         <EditForm
@@ -156,7 +164,7 @@ function App() {
           closeEditMode={closeEditMode}
         />
       )}
-      <CustomForm addTask={addTask} />
+      <CustomForm className="CustomFormComponent" addTask={addTask} />
       {tasks && (
         <TaskList
           tasks={filteredTasks}
